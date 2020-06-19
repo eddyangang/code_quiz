@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to right, #0bff2b9a, #3882e2);
+}
+
+.container {
+    background-color: white;
+    padding: 2rem;
+    max-width: 80%;
+    width: 800px;
+    box-shadow: 0 0 10px 2px;
+    border-radius: 5px;
+}
+
+#answer-btn {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1rem;
+    margin: 1rem;
+}
+
+.btn {
+    padding: 5px 10px;
+    background-color: rgb(48, 226, 226);
+    text-align: center;
+    color: white;
+    border: 2px solid lightgray;
+    border-radius: 1rem;
+}
+
+.btn:hover {
+    cursor: pointer;
+    border-color: black;
+    opacity: 0.75;
+}
+
+#question {
+    text-align: center;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+}
+
+#start-btn {
+    font-size: larger;
+}
+
+#next-btn {
+    font-size: larger;
+}
+
+.hide {
+    display: none;
+}
+
+.correct {
+    background-color: green;
+}
+
+.wrong {
+    background-color: red;
+}
