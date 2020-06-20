@@ -7,35 +7,50 @@ const nextButton = document.getElementById('next-btn');
 const submitButton = document.getElementById('submit-btn');
 var userName = document.getElementById('userName')
 var timeDisplay = document.getElementById('timer')
+
 // const for modal to view Score
 const scoreList = document.getElementById('viewScore')
 var modal = document.getElementById("myModal");
 var span = document.getElementsByClassName("close")[0];
-
+var peopleList = document.getElementById('people-list');
 // Keep track of current question
 let currentQuestionIndex;
+
 // Score counter when question is answered correctly
 var score;
+var finalScore;
+var people = [];
+// Consts to keep track of timer. 
 var timeLeft;
 var interval;
 
+// When 0 time left end quiz
 function timer() {
     if (timeLeft === 0) {
         testFinished();
     } else {
         timeLeft--;
-        timeDisplay.textContent = timeLeft;
+        timeDisplay.textContent = timeLeft + "s";
     }
 }
 
 // Add event listeners to control buttons
-startButton.addEventListener('click', startGame)
-nextButton.addEventListener('click', nextQuestion)
+startButton.onclick =  startGame;
+nextButton.onclick = nextQuestion;
+
 //submitButton.addEventListener('click', submit)
 submitButton.onclick = function () {
+    addPersonToList();
     modal.style.display = "block";
 }
-
+function addPersonToList() {
+    event.preventDefault();
+    var name = userName.value;
+    var li = document.createElement("li");
+    li.innerHTML = name + ": " + finalScore + "%";
+    people.push(`${name}: ${finalScore}%`);
+    peopleList.append(li);
+}
 // When the user clicks on the button, open the modal
 scoreList.onclick = function () {
     modal.style.display = "block";
@@ -119,11 +134,11 @@ function testFinished() {
     questionContainer.classList.add('hide');
     submitButton.classList.remove('hide')
     nextButton.classList.add('hide')
+    finalScore = Math.round((score/questions.length)*100);
 }
 // Move on to next question when user press 'next' button
 function nextQuestion() {
     if (currentQuestionIndex === questions.length - 1) {
-        console.log("hel");
         testFinished();
     } else {
         resetState();
@@ -146,36 +161,6 @@ function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
-
-// function startGame() {
-//     startButton.classList.add('hide');
-//     questionContainer.classList.remove('hide');
-//     currentQuestionIndex = 0;
-//     setNextQuestion();
-// }
-
-// function setNextQuestion() {
-//     resetState();
-//     showQuestion(currentQuestionIndex);
-// }
-
-// function resetState() {
-//     nextButton.classList.add('hide');
-//     while (answerButton.firstChild) {
-//         answerButton.removeChild(answerButton.firstChild)
-//       }
-// }
-
-// function showQuestion(currentQuestionIndex) {
-//     question.innerText = questions[currentQuestionIndex]["question"]
-//     questions[currentQuestionIndex]["content"].forEach(answer => {
-//         const button = document.createElement('button')
-//         button.innerText = answer.text
-//         button.classList.add('btn')
-//     })
-
-// }
-
 
 
 
@@ -234,6 +219,65 @@ const questions = [{
         ],
         "correct": 1,
         "answer": "Northern Lights"
+    },{
+        "correct": 3,
+        "content": [
+            "developed the telescope",
+            "discovered four satellites of Jupiter",
+            "discovered that the movement of pendulum produces a regular time measurement",
+            "All of the above"
+        ],
+        "question": "Galileo was an Italian astronomer who"
+    },
+    {
+        "correct": 3,
+        "content": [
+            "the infrared light kills bacteria in the body",
+            "resistance power increases",
+            "the pigment cells in the skin get stimulated and produce a healthy tan",
+            "the ultraviolet rays convert skin oil into Vitamin D"
+        ],
+        "question": "Exposure to sunlight helps a person improve his health because"
+    },
+    {
+        "correct": 0,
+        "content": [
+            "a club or a local sport association for remarkable achievements",
+            "amateur athlete, not necessarily an Olympian",
+            "National Olympic Committee for outstanding work",
+            "None of the above"
+        ],
+        "question": "Sir Thomas Fearnley Cup is awarded to"
+    },
+    {
+        "correct": 1,
+        "content": [
+            "1968",
+            "1929",
+            "1901",
+            "1965"
+        ],
+        "question": "Oscar Awards were instituted in"
+    },
+    {
+        "correct": 2,
+        "content": [
+            "1998",
+            "1989",
+            "1979",
+            "1800"
+        ],
+        "question": "When did Margaret Thatcher became the first female Prime Minister of Britain?"
+    },
+    {
+        "correct": 2,
+        "content": [
+            "15th April",
+            "12th December",
+            "1st May",
+            "1st August"
+        ],
+        "question": "When is the International Workers' Day?"
     }
 
 ]
