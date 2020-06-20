@@ -10,20 +10,36 @@
 </head>
 
 <body>
-    <main class="container">
-        <div id="question-container" class="hide">
-            <div id="question"></div>
-            <div id="answer-btn">
-                <button class="btn"></button>
-                <button class="btn"></button>
-                <button class="btn"></button>
-                <button class="btn"></button>
-            </div>
+    <nav class="navbar">
+        <div class="navbar-item" id="viewScore">View High Scores</div>
+        <div class="navbar-item">Time: <span id="timer">60</span></div>
+    </nav>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Scores: </h3>
         </div>
-        <div class="options">
-            <button id="start-btn" class="btn">Start</button>
-            <button id="next-btn" class="btn hide">Next</button>
+
+    </div </div> <main class="container">
+    <div id="question-container" class="hide">
+        <div id="question"></div>
+        <div id="answer-btn">
+            <button class="btn"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
+            <button class="btn"></button>
         </div>
+    </div>
+    <div class="options">
+        <input type="text" id="userName" placeholder="Enter a name to Start">
+        <button id="start-btn" class="btn">Start</button>
+        <button id="next-btn" class="btn hide">Next</button>
+        <button id="submit-btn" class="btn hide">Submit</button>
+    </div>
     </main>
 
 </body>

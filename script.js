@@ -1,24 +1,72 @@
-// Poimt to ids in HTML
+// const for the quiz game
 const questionContainer = document.getElementById('question-container');
 const question = document.getElementById('question');
 const answerButton = document.getElementById('answer-btn');
 const startButton = document.getElementById('start-btn');
 const nextButton = document.getElementById('next-btn');
+const submitButton = document.getElementById('submit-btn');
+var userName = document.getElementById('userName')
+var timeDisplay = document.getElementById('timer')
+// const for modal to view Score
+const scoreList = document.getElementById('viewScore')
+var modal = document.getElementById("myModal");
+var span = document.getElementsByClassName("close")[0];
+
 // Keep track of current question
 let currentQuestionIndex;
 // Score counter when question is answered correctly
-var score = 0;
+var score;
+var timeLeft;
+var interval;
+
+function timer() {
+    if (timeLeft === 0) {
+        testFinished();
+    } else {
+        timeLeft--;
+        timeDisplay.textContent = timeLeft;
+    }
+}
 
 // Add event listeners to control buttons
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', nextQuestion)
+//submitButton.addEventListener('click', submit)
+submitButton.onclick = function () {
+    modal.style.display = "block";
+}
+
+// When the user clicks on the button, open the modal
+scoreList.onclick = function () {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 // Initialize the start of game
 function startGame() {
-    startButton.classList.add('hide');
-    questionContainer.classList.remove('hide');
-    currentQuestionIndex = 0;
-    setQuestion(currentQuestionIndex)
+    if (userName.value.trim() === "") {
+        alert("Enter a valid username")
+    } else {
+        score = 0;
+        timeLeft = 60;
+        interval = setInterval(timer, 1000);
+        currentQuestionIndex = 0;
+        userName.classList.add('hide')
+        startButton.classList.add('hide');
+        questionContainer.classList.remove('hide');
+        setQuestion(currentQuestionIndex)
+    }
 }
 
 // Set the text of current question and answer
@@ -66,13 +114,22 @@ function selectedAnswer(e) {
     }
 
 }
+
+function testFinished() {
+    questionContainer.classList.add('hide');
+    submitButton.classList.remove('hide')
+    nextButton.classList.add('hide')
+}
 // Move on to next question when user press 'next' button
 function nextQuestion() {
-    resetState();
-    currentQuestionIndex++
-    setQuestion(currentQuestionIndex)
-
-    if (currentQuestionIndex = )
+    if (currentQuestionIndex === questions.length - 1) {
+        console.log("hel");
+        testFinished();
+    } else {
+        resetState();
+        currentQuestionIndex++
+        setQuestion(currentQuestionIndex)
+    }
 }
 
 // Reset the state of each button by re-enabling each button and removing right and wrong highlight
