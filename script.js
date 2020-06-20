@@ -131,6 +131,7 @@ function selectedAnswer(e) {
 }
 
 function testFinished() {
+    clearInterval(interval);
     questionContainer.classList.add('hide');
     submitButton.classList.remove('hide')
     nextButton.classList.add('hide')
@@ -227,7 +228,8 @@ const questions = [{
             "discovered that the movement of pendulum produces a regular time measurement",
             "All of the above"
         ],
-        "question": "Galileo was an Italian astronomer who"
+        "question": "Galileo was an Italian astronomer who",
+        "answer": "All of the above"
     },
     {
         "correct": 3,
@@ -237,7 +239,8 @@ const questions = [{
             "the pigment cells in the skin get stimulated and produce a healthy tan",
             "the ultraviolet rays convert skin oil into Vitamin D"
         ],
-        "question": "Exposure to sunlight helps a person improve his health because"
+        "question": "Exposure to sunlight helps a person improve his health because",
+        "answer": "the ultraviolet rays convert skin oil into Vitamin D"
     },
     {
         "correct": 0,
@@ -247,7 +250,8 @@ const questions = [{
             "National Olympic Committee for outstanding work",
             "None of the above"
         ],
-        "question": "Sir Thomas Fearnley Cup is awarded to"
+        "question": "Sir Thomas Fearnley Cup is awarded to",
+        "answer": "a club or a local sport association for remarkable achievements"
     },
     {
         "correct": 1,
@@ -257,7 +261,8 @@ const questions = [{
             "1901",
             "1965"
         ],
-        "question": "Oscar Awards were instituted in"
+        "question": "Oscar Awards were instituted in",
+        "answer": "1929"
     },
     {
         "correct": 2,
@@ -267,7 +272,8 @@ const questions = [{
             "1979",
             "1800"
         ],
-        "question": "When did Margaret Thatcher became the first female Prime Minister of Britain?"
+        "question": "When did Margaret Thatcher became the first female Prime Minister of Britain?",
+        "answer": "1979"
     },
     {
         "correct": 2,
@@ -277,7 +283,8 @@ const questions = [{
             "1st May",
             "1st August"
         ],
-        "question": "When is the International Workers' Day?"
+        "question": "When is the International Workers' Day?",
+        "answer": "1st May"
     }
 
 ]
