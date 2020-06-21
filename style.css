@@ -14,7 +14,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(to right, #0bff2b9a, #3882e2);
+    background: linear-gradient(120deg, #0bff2b9a, #3882e2);
 }
 
 .navbar {
