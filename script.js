@@ -20,10 +20,10 @@ let currentQuestionIndex;
 var score;
 var finalScore;
 var people = [];
+
 // Consts to keep track of timer. 
 var timeLeft;
 var interval;
-
 // When 0 time left end quiz
 function timer() {
     if (timeLeft === 0) {
@@ -34,8 +34,9 @@ function timer() {
     }
 }
 
+
 // Add event listeners to control buttons
-startButton.onclick =  startGame;
+startButton.onclick = startGame;
 nextButton.onclick = nextQuestion;
 
 //submitButton.addEventListener('click', submit)
@@ -43,6 +44,7 @@ submitButton.onclick = function () {
     addPersonToList();
     modal.style.display = "block";
 }
+
 function addPersonToList() {
     event.preventDefault();
     var name = userName.value;
@@ -70,9 +72,11 @@ window.onclick = function (event) {
 
 // Initialize the start of game
 function startGame() {
+    // Check to see if username is blank.
     if (userName.value.trim() === "") {
         alert("Enter a valid username")
     } else {
+        // Execute all start parameters.
         score = 0;
         timeLeft = 60;
         interval = setInterval(timer, 1000);
@@ -87,10 +91,10 @@ function startGame() {
 // Set the text of current question and answer
 function setQuestion(questionNumber) {
     // Sets the text of current question
-    question.innerText = questions[questionNumber]["question"]
+    question.innerText = suffledQuestions[questionNumber]["question"]
 
     // Sets the answer text on button for the current question
-    var answers = questions[questionNumber]["content"];
+    var answers = suffledQuestions[questionNumber]["content"];
     for (let i = 0; i < answers.length; i++) {
         answerButton.children[i].innerText = answers[i];
 
@@ -105,13 +109,13 @@ function selectedAnswer(e) {
     const selectedButton = e.target;
 
     // Current correct answer in string form
-    const correctAnswerString = questions[currentQuestionIndex]["answer"];
+    const correctAnswerString = suffledQuestions[currentQuestionIndex]["answer"];
 
     // Current correct answer in array index form
-    const correctAnswerIndex = questions[currentQuestionIndex]["correct"];
+    const correctAnswerIndex = suffledQuestions[currentQuestionIndex]["correct"];
 
     // disable each button after a answer button is selected to prevent the user from pressing each button and score from increasing when button is continually pressed.
-    for (let i = 0; i < questions[currentQuestionIndex]["content"].length; i++) {
+    for (let i = 0; i < suffledQuestions[currentQuestionIndex]["content"].length; i++) {
         answerButton.children[i].disabled = true;
     }
 
@@ -129,17 +133,18 @@ function selectedAnswer(e) {
     }
 
 }
-
+// End quiz when completed or by time limit and aggregate final score. 
 function testFinished() {
     clearInterval(interval);
     questionContainer.classList.add('hide');
     submitButton.classList.remove('hide')
     nextButton.classList.add('hide')
-    finalScore = Math.round((score/questions.length)*100);
+    finalScore = Math.round((score / suffledQuestions.length) * 100);
 }
 // Move on to next question when user press 'next' button
 function nextQuestion() {
-    if (currentQuestionIndex === questions.length - 1) {
+    // Check to see if user is on last question.
+    if (currentQuestionIndex === suffledQuestions.length - 1) {
         testFinished();
     } else {
         resetState();
@@ -165,7 +170,7 @@ function clearStatusClass(element) {
 
 
 
-
+// Questions used in the test.
 const questions = [{
         "question": "In what children's game are participants chased by someone designated \"It\"?",
         "content": [
@@ -220,7 +225,7 @@ const questions = [{
         ],
         "correct": 1,
         "answer": "Northern Lights"
-    },{
+    }, {
         "correct": 3,
         "content": [
             "developed the telescope",
@@ -288,3 +293,6 @@ const questions = [{
     }
 
 ]
+
+// Shuffled array of questions. 
+var suffledQuestions = questions.sort(() => Math.random() - 0.5);
