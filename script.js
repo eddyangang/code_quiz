@@ -45,6 +45,7 @@ submitButton.onclick = function () {
     modal.style.display = "block";
 }
 
+// Add username and score to High Score list, and keep track of previous scores. 
 function addPersonToList() {
     event.preventDefault();
     var name = userName.value;
