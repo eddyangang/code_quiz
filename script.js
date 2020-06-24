@@ -79,7 +79,7 @@ function startGame() {
     } else {
         // Execute all start parameters.
         score = 0;
-        timeLeft = 60;
+        timeLeft = 100;
         interval = setInterval(timer, 1000);
         currentQuestionIndex = 0;
         userName.classList.add('hide')
@@ -131,6 +131,7 @@ function selectedAnswer(e) {
         answerButton.children[correctAnswerIndex].classList.add('correct')
         selectedButton.classList.add('wrong')
         nextButton.classList.remove('hide')
+        timeLeft = timeLeft - 5;
     }
 
 }

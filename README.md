@@ -7,7 +7,9 @@ To create a quiz game using vanilla JavaScript.
 Visit the site [here](https://eddyangang.github.io/code_quiz/).
 
 ## Key Features
-✔️ Includes a 60 second timer, that will end test when the time reaches to 0. 
+✔️ Includes a 100 second timer, that will end test when the time reaches to 0. 
+
+✔️ Wrong asnwers will deduct 5 seconds from the timer. 
 
 ✔️ Suffled questions for a unique test.
 
